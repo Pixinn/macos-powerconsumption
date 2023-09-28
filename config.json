@@ -1,0 +1,118 @@
+{
+    "Id": "powermetrics",
+    "Test":
+    {
+        "title": "Youtube 4K HDR",
+        "soc": "M2 Pro 10-cores",
+        "os": "macOS 14.0"
+    },
+    "Measures":
+    {
+        "power":
+        {
+            "enable": true,
+            "devices":
+            [     
+                {
+                    "name": "CPU",
+                    "regexps": [
+                        "CPU Power:\\s*([\\d.]+)\\s*mW"
+                    ],
+                    "colors" : [
+                        "#FF57BC"
+                    ]
+                }, 
+                {
+                    "name": "GPU",
+                    "regexps": [
+                        "GPU Power:\\s*([\\d.]+)\\s*mW"
+                    ],
+                    "colors" : [
+                        "#57FFBC"
+                    ]
+                },          
+                {
+                    "name": "Total",
+                    "regexps": [
+                        "Combined Power \\(CPU \\+ GPU \\+ ANE\\):\\s*([\\d.]+)\\s*mW"
+                    ],
+                    "colors" : [
+                        "#BC57FF"
+                    ]
+                }
+            ]
+        },
+        "frequency":
+        {
+            "enable": true,
+            "devices":
+            [
+                {
+                    "name": "Efficiency Cluster",
+                    "regexps": [
+                        "E-Cluster HW active frequency:\\s*([\\d.]+)\\s*MHz"
+                    ],
+                    "colors" : [
+                        "#73A4FF"
+                    ]
+                },
+                {
+                    "name": "Performance Cluster #",
+                    "regexps": [
+                        "P0-Cluster HW active frequency:\\s*([\\d.]+)\\s*MHz",
+                        "P1-Cluster HW active frequency:\\s*([\\d.]+)\\s*MHz"
+                    ],
+                    "colors" : [
+                        "#FF715A",
+                        "#ed126c"
+                    ]
+                },
+                {
+                    "name": "GPU",
+                    "regexps": [
+                        "GPU HW active frequency:\\s*([\\d.]+)\\s*MHz"
+                    ],
+                    "colors" : [
+                        "#01F0B0"
+                    ]
+                }
+            ]          
+        },
+        "usage":
+        {
+            "enable": true,
+            "devices":
+            [
+                {
+                    "name": "Efficiency Cluster",
+                    "regexps": [
+                        "E-Cluster HW active residency:\\s*([\\d.]+)"
+                    ],
+                    "colors" : [
+                        "#73A4FF"
+                    ]
+                },
+                {
+                    "name": "Performance Cluster #",
+                    "regexps": [
+                        "P0-Cluster HW active residency:\\s*([\\d.]+)",
+                        "P1-Cluster HW active residency:\\s*([\\d.]+)"
+                    ],
+                    "colors" : [
+                        "#FF715A",
+                        "#ed126c"
+                    ]
+                },
+                {
+                    "name": "GPU",
+                    "regexps": [
+                        "GPU HW active residency:\\s*([\\d.]+)"
+                    ],
+                    "colors" : [
+                        "#01F0B0"
+                    ]
+                }
+            ]          
+        }
+    }
+}

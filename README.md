@@ -1,17 +1,22 @@
-# Apple Silicon M1 Power Consumption Deep Dive Series
-This repository is the source code written by me to parse the powermetrics logs and generate charts used in the following blog https://singhkays.com/blog/apple-silicon-m1-video-power-consumption-pt-1/
+# macOS power consumption
 
-# Repository structure
-Here are the various files and folders and their purposes 
-1. `powermetrics-parse.py` - This is the main code that is used to parse logs and generate charts
-2. `autorun-local-videos.py` - This is an experimental file that I was trying to use to completely automate logging and playing local videos. I didn't use this for the blog as it needs more testing and fine-tuning.
-3. `autorun-local-videos.py` - Equivalent of #2 but for testing browser based videos using Selenium
-4. `powermetric-logs` - Folder where the `powermetrics-parse.py` script expects to find the logs to parse
-5. `outputs` - Folder where the output charts and files are placed
+This collection of scripts helps measure and compare power consumption in macOS using *powermetrics*.
 
-# Contributions and Use
-Feel free to use this code to learn or modify for your investigations. All I ask is an attribution to this repo and the accompanying blog @ https://singhkays.com/blog/apple-silicon-m1-video-power-consumption-pt-1/. 
+## How to use it?
 
-# Contact
-I'm fairly active over on Twitter and my DMs are open. Feel free to reach out with questions/comments, etc.
-- https://twitter.com/singhkays 
+## Goal
+
+The scripts rely on the native *powermetrics* app. Each call of *powermetrics* returns a large txt file that will be placed into the folder *powermetric-logs*. After all the measure are completed, used the *powermetrics-parse.py* to parse them and produce the SVG files summarizing and comparing the measures.  
+A *run.sh* bash script is provided to run *powermetrics* in sudo mode, along with a *launch-test.scpt* Applescript that will pilot the tested application.
+
+## Configuration
+
+*powermetrics* is heavily dependant to the System on Chip og your mac. Each one will return different results. In order to help the parser, a *config.json* file is provided where you can define the regexp used to find the relevant information corresponding to a "device" (a part of the SoC such as the GPU or a CPU cluster).
+
+## Steps
+
+1. Modify the *config.json* according to the output of *powermetrics* on your machine
+2. Modify *run.sh* to provide the output location of the *powermetrics* logs
+3. Modify *launch-test.scpt* to launch the app to be tested and pilot it
+4. Run *run.sh*
+5. Run *powermetrics-parse.py*
